@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Job Application</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Edit Job Application</h1>
+
+    <form method="POST">
+
+        <label>Company Name</label>
+
+        <input type="text"
+               name="company"
+               value="{{ application[1] }}"
+               required>
+
+
+        <label>Job Role</label>
+
+        <input type="text"
+               name="role"
+               value="{{ application[2] }}"
+               required>
+
+
+        <label>Location</label>
+
+        <input type="text"
+               name="location"
+               value="{{ application[3] or '' }}">
+
+
+        <label>Date Applied</label>
+
+        <input type="date"
+               name="date_applied"
+               value="{{ application[4] or '' }}">
+
+
+        <label>Status</label>
+
+        <select name="status">
+
+            <option value="Applied"
+                {% if application[5] == "Applied" %}selected{% endif %}>
+                Applied
+            </option>
+
+            <option value="Interview"
+                {% if application[5] == "Interview" %}selected{% endif %}>
+                Interview
+            </option>
+
+            <option value="Selected"
+                {% if application[5] == "Selected" %}selected{% endif %}>
+                Selected
+            </option>
+
+            <option value="Rejected"
+                {% if application[5] == "Rejected" %}selected{% endif %}>
+                Rejected
+            </option>
+
+        </select>
+
+
+        <label>Priority</label>
+
+        <select name="priority">
+
+            <option value="High"
+                {% if application[9] == "High" %}selected{% endif %}>
+                High
+            </option>
+
+            <option value="Medium"
+                {% if application[9] == "Medium" %}selected{% endif %}>
+                Medium
+            </option>
+
+            <option value="Low"
+                {% if application[9] == "Low" %}selected{% endif %}>
+                Low
+            </option>
+
+        </select>
+
+
+        <label>Follow-up Date</label>
+
+        <input type="date"
+               name="follow_up_date"
+               value="{{ application[8] or '' }}">
+
+
+        <label>Job URL</label>
+
+        <input type="url"
+               name="job_url"
+               value="{{ application[6] or '' }}"
+               placeholder="https://company.com/job">
+
+
+        <label>Notes</label>
+
+        <textarea name="notes"
+                  rows="5"
+                  placeholder="Recruiter name, interview details, follow-up information...">{{ application[7] or '' }}</textarea>
+
+
+        <button type="submit">
+            Update Application
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/">
+        ← Back to Applications
+    </a>
+
+</div>
+
+</body>
+
+</html>
